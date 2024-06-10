@@ -52,14 +52,15 @@ public class Koneksi {
     
     public void UbahTravelAgen(String id, String nama_agen, String slogan, String deskripsi, String nama_domain){
         try {
-            String sql = "UPDATE travel_agen SET name_agen=?, slogan=?, deskripsi=?,nama_domain=? where id=?";
+            String sql = "UPDATE travel_agen SET nama_agen=?, slogan=?, deskripsi=?,nama_domain=? where id=?";
             PreparedStatement perintah = koneksiDB.prepareStatement(sql);
             
-            perintah.setString(1, id);
-            perintah.setString(2, nama_agen);
-            perintah.setString(3, slogan);
-            perintah.setString(4, deskripsi);
-            perintah.setString(5, nama_domain);
+            
+            perintah.setString(1, nama_agen);
+            perintah.setString(2, slogan);
+            perintah.setString(3, deskripsi);
+            perintah.setString(4, nama_domain);
+            perintah.setString(5, id);
             
             perintah.executeUpdate();
             System.out.println("Berhasil Diubah");
@@ -105,11 +106,12 @@ public class Koneksi {
             String sql = "UPDATE travel_pelanggan SET nama_pelanggan=?, jenis_kelamin=?, umur=?,no_hp=? where id=?";
             PreparedStatement perintah = koneksiDB.prepareStatement(sql);
             
-            perintah.setString(1, id);
-            perintah.setString(2, nama_pelanggan);
-            perintah.setString(3, jenis_kelamin);
-            perintah.setString(4, umur);
-            perintah.setString(5, no_hp);
+            
+            perintah.setString(1, nama_pelanggan);
+            perintah.setString(2, jenis_kelamin);
+            perintah.setString(3, umur);
+            perintah.setString(4, no_hp);
+            perintah.setString(5, id);
             
             perintah.executeUpdate();
             System.out.println("Berhasil Diubah");
@@ -158,12 +160,13 @@ public class Koneksi {
             String sql = "UPDATE travel_tiket SET tgl_berangkat=?, dari=?, kota_tujuan=?,jam=?,harga=? where kode_tiket=?";
             PreparedStatement perintah = koneksiDB.prepareStatement(sql);
             
-            perintah.setString(1, kode_tiket);
-            perintah.setString(2, tgl_berangkat);
-            perintah.setString(3, dari);
-            perintah.setString(4, kota_tujuan);
-            perintah.setString(5, jam);
-            perintah.setString(6, harga);
+            
+            perintah.setString(1, tgl_berangkat);
+            perintah.setString(2, dari);
+            perintah.setString(3, kota_tujuan);
+            perintah.setString(4, jam);
+            perintah.setString(5, harga);
+            perintah.setString(6, kode_tiket);
             
             perintah.executeUpdate();
             System.out.println("Berhasil Diubah");
@@ -172,12 +175,12 @@ public class Koneksi {
         }
     }
     
-    public void HapusTravelTiket(String id){
+    public void HapusTravelTiket(String kode_tiket){
         try {
             String sql = "DELETE FROM travel_tiket where kode_tiket=?";
             PreparedStatement perintah = koneksiDB.prepareStatement(sql);
 
-            perintah.setString(1, id);
+            perintah.setString(1, kode_tiket);
             
             perintah.executeUpdate();
             System.out.println("Berhasil Dihapus ");
@@ -213,14 +216,15 @@ public class Koneksi {
             String sql = "UPDATE travel_pegawai SET id=?, nama=?, jenis_kelamin=?,tgl_lahir=?,alamat=?,kontak=? ,jabatan=?  where nik=?";
             PreparedStatement perintah = koneksiDB.prepareStatement(sql);
             
-            perintah.setString(1, nik);
-            perintah.setString(2, id);
-            perintah.setString(3, nama);
-            perintah.setString(4, jenis_kelamin);
-            perintah.setString(5, tgl_lahir);
-            perintah.setString(6, alamat);
-            perintah.setString(7, kontak);
-            perintah.setString(8, jabatan);
+            
+            perintah.setString(1, id);
+            perintah.setString(2, nama);
+            perintah.setString(3, jenis_kelamin);
+            perintah.setString(4, tgl_lahir);
+            perintah.setString(5, alamat);
+            perintah.setString(6, kontak);
+            perintah.setString(7, jabatan);
+            perintah.setString(8, nik);
             
             perintah.executeUpdate();
             System.out.println("Berhasil Diubah");
@@ -229,12 +233,12 @@ public class Koneksi {
         }
     }
     
-    public void HapusTravelPegawai(String id){
+    public void HapusTravelPegawai(String nik){
         try {
-            String sql = "DELETE FROM travel_pegawai where id=?";
+            String sql = "DELETE FROM travel_pegawai where nik=?";
             PreparedStatement perintah = koneksiDB.prepareStatement(sql);
 
-            perintah.setString(1, id);
+            perintah.setString(1, nik);
             
             perintah.executeUpdate();
             System.out.println("Berhasil Dihapus ");
