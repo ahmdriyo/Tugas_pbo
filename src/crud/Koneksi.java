@@ -7,6 +7,8 @@ package crud;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  *
@@ -82,6 +84,61 @@ public class Koneksi {
             System.out.print(e.getMessage());
         }
     }
+    public void getIdTravelAgen(String id) {
+        try {
+            String sql = "select * from travel_agen where id=?";
+            PreparedStatement perintah = koneksiDB.prepareStatement(sql);
+            
+            perintah.setString(1, id);
+            
+            ResultSet data = perintah.executeQuery();
+            
+            while (data.next()){
+                System.out.println("id : " + data.getString("id"));
+                System.out.println("nama_agen : " + data.getString("nama_agen"));
+                System.out.println("slogan : " + data.getString("slogan"));
+                System.out.println("deskripsi : " + data.getString("deskripsi"));
+                System.out.println("nama_domain : " + data.getString("nama_domain"));
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+    }
+    public void GetRecordTravelAgen(){
+        try {
+            String sql = "select * from travel_agen order by id asc";
+            Statement perintah = koneksiDB.createStatement();
+            
+            ResultSet data = perintah.executeQuery(sql);
+            while (data.next()){
+                System.out.println(
+                data.getString("id") + " | " +
+                data.getString("nama_agen") + " | " +
+                data.getString("slogan") + " | " +
+                data.getString("deskripsi") + " | " +
+                data.getString("nama_domain")
+                );
+            }
+        } catch (Exception e) {
+        }
+    }
+    
+    public int JumlahRecordTravelAgen(){
+        int jumlah = 0;
+        try {
+            String sql = "select * from travel_agen order by id asc";
+            Statement perintah = koneksiDB.createStatement();
+            
+            ResultSet data = perintah.executeQuery(sql);
+            
+            while(data.next()){
+                jumlah = jumlah + 1;
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+        return jumlah;
+    }
     // travel_pelanggan
     public void SimpanTravelPelanggan (String id, String nama_pelanggan, String jenis_kelamin, String umur, String no_hp){
         try {
@@ -134,7 +191,61 @@ public class Koneksi {
         }
     }
     
+    public void getIdTravelPelanggan(String id) {
+        try {
+            String sql = "select * from travel_pelanggan where id=?";
+            PreparedStatement perintah = koneksiDB.prepareStatement(sql);
+            
+            perintah.setString(1, id);
+            
+            ResultSet data = perintah.executeQuery();
+            
+            while (data.next()){
+                System.out.println("id : " + data.getString("id"));
+                System.out.println("nama_pelanggan : " + data.getString("nama_pelanggan"));
+                System.out.println("jenis_kelamin : " + data.getString("jenis_kelamin"));
+                System.out.println("umur : " + data.getString("umur"));
+                System.out.println("no_hp : " + data.getString("no_hp"));
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+    }
+    public void GetRecordTravelPelanggan(){
+        try {
+            String sql = "select * from travel_pelanggan order by id asc";
+            Statement perintah = koneksiDB.createStatement();
+            
+            ResultSet data = perintah.executeQuery(sql);
+            while (data.next()){
+                System.out.println(
+                data.getString("id") + " | " +
+                data.getString("nama_pelanggan") + " | " +
+                data.getString("jenis_kelamin") + " | " +
+                data.getString("umur") + " | " +
+                data.getString("no_hp")
+                );
+            }
+        } catch (Exception e) {
+        }
+    }
     
+    public int JumlahRecordTravelPelanggan(){
+        int jumlah = 0;
+        try {
+            String sql = "select * from travel_pelanggan order by id asc";
+            Statement perintah = koneksiDB.createStatement();
+            
+            ResultSet data = perintah.executeQuery(sql);
+            
+            while(data.next()){
+                jumlah = jumlah + 1;
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+        return jumlah;
+    }
     // travel_tiket
     public void SimpanTravelTiket (String kode_tiket, String tgl_berangkat, String dari, String kota_tujuan, String jam, String harga){
         try {
@@ -188,7 +299,63 @@ public class Koneksi {
             System.out.print(e.getMessage());
         }
     }
+    public void getIdTravelTiket(String kode_tiket) {
+        try {
+            String sql = "select * from travel_tiket where kode_tiket=?";
+            PreparedStatement perintah = koneksiDB.prepareStatement(sql);
+            
+            perintah.setString(1, kode_tiket);
+            
+            ResultSet data = perintah.executeQuery();
+            
+            while (data.next()){
+                System.out.println("kode_tiket : " + data.getString("kode_tiket"));
+                System.out.println("tgl_berangkat : " + data.getString("tgl_berangkat"));
+                System.out.println("dari : " + data.getString("dari"));
+                System.out.println("kota_tujuan : " + data.getString("kota_tujuan"));
+                System.out.println("jam : " + data.getString("jam"));
+                System.out.println("harga : " + data.getString("harga"));
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+    }
+    public void GetRecordTravelTiket(){
+        try {
+            String sql = "select * from travel_tiket order by kode_tiket asc";
+            Statement perintah = koneksiDB.createStatement();
+            
+            ResultSet data = perintah.executeQuery(sql);
+            while (data.next()){
+                System.out.println(
+                data.getString("kode_tiket") + " | " +
+                data.getString("tgl_berangkat") + " | " +
+                data.getString("dari") + " | " +
+                data.getString("kota_tujuan") + " | " +
+                data.getString("jam") + " | " +
+                data.getString("harga") 
+                );
+            }
+        } catch (Exception e) {
+        }
+    }
     
+    public int JumlahRecordTravelTiket(){
+        int jumlah = 0;
+        try {
+            String sql = "select * from travel_tiket order by kode_tiket asc";
+            Statement perintah = koneksiDB.createStatement();
+            
+            ResultSet data = perintah.executeQuery(sql);
+            
+            while(data.next()){
+                jumlah = jumlah + 1;
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+        return jumlah;
+    }
     //travel_pegawai
     public void SimpanTravePegawai (String nik, String id, String nama, String jenis_kelamin, String tgl_lahir, String alamat, String kontak, String jabatan){
         try {
@@ -245,6 +412,67 @@ public class Koneksi {
         } catch (Exception e) {
             System.out.print(e.getMessage());
         }
+    }
+    public void getIdTravePegawai(String nik) {
+        try {
+            String sql = "select * from travel_pegawai where nik=?";
+            PreparedStatement perintah = koneksiDB.prepareStatement(sql);
+            
+            perintah.setString(1, nik);
+            
+            ResultSet data = perintah.executeQuery();
+            
+            while (data.next()){
+                System.out.println("nik : " + data.getString("nik"));
+                System.out.println("id : " + data.getString("id"));
+                System.out.println("nama : " + data.getString("nama"));
+                System.out.println("jenis_kelamin : " + data.getString("jenis_kelamin"));
+                System.out.println("tgl_lahir : " + data.getString("tgl_lahir"));
+                System.out.println("alamat : " + data.getString("alamat"));
+                System.out.println("kontak : " + data.getString("kontak"));
+                System.out.println("jabatan : " + data.getString("jabatan"));
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+    }
+    public void GetRecordTravePegawai(){
+        try {
+            String sql = "select * from travel_pegawai order by nik asc";
+            Statement perintah = koneksiDB.createStatement();
+            
+            ResultSet data = perintah.executeQuery(sql);
+            while (data.next()){
+                System.out.println(
+                data.getString("nik") + " | " +
+                data.getString("id") + " | " +
+                data.getString("nama") + " | " +
+                data.getString("jenis_kelamin") + " | " +
+                data.getString("tgl_lahir") + " | " +
+                data.getString("alamat") + " | " +
+                data.getString("kontak") + " | " +
+                data.getString("jabatan")
+                );
+            }
+        } catch (Exception e) {
+        }
+    }
+    
+    public int JumlahRecordTravePegawai(){
+        int jumlah = 0;
+        try {
+            String sql = "select * from travel_pegawai order by nik asc";
+            Statement perintah = koneksiDB.createStatement();
+            
+            ResultSet data = perintah.executeQuery(sql);
+            
+            while(data.next()){
+                jumlah = jumlah + 1;
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+        return jumlah;
     }
     
 }
